@@ -27,7 +27,7 @@
       <v-container>
           <v-row>
             <v-text-field
-              v-model="firstname"
+              v-model="employee.name"
               :rules="nameRules"
               :counter="10"
               label="First name"
@@ -37,14 +37,14 @@
   
           <v-row>
             <v-text-field
-              v-model="email"
+              v-model="employee.email"
               :rules="emailRules"
               label="E-mail"
               required
             ></v-text-field>
           </v-row>
 
-          <v-btn class="mr-4" @click="submit">submit</v-btn>
+          <v-btn class="mr-4" @click="addEmployee">submit</v-btn>
       </v-container>
     </v-form>
   </v-app>
@@ -53,9 +53,6 @@
 
 <script>
 export default {
-  components: {
-     // name: 'AddItem'
-  },
   data() {
       return {
           employee: {}
@@ -72,4 +69,3 @@ export default {
     }
 }
 </script>
-// https://v15.vuetifyjs.com/en/components/forms

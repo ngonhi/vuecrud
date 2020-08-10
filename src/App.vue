@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Create' }" class="nav-link">Add Employee</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Index' }" class="nav-link">Employee Information</router-link>
+          <router-link :to="{ name: 'Index' }" class="nav-link">All Employees</router-link>
         </li>
       </ul>
     </nav>

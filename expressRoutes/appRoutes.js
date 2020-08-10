@@ -4,7 +4,7 @@ var appRoutes = express.Router();
 // Require employee model in our routes module
 var Employee = require('../models/Employee');
 
-// Defined store route
+// Add employee
 appRoutes.route('/add').post((req, res) => {
   const employee = new Employee(req.body);
   employee.save().then(employee => {
@@ -16,7 +16,7 @@ appRoutes.route('/add').post((req, res) => {
       });
     });
 
-// Defined get data(index or listing) route
+// Get employee
 appRoutes.route('/').get((req, res) => {
   Employee.find().sort({name: 1})
       .then(results => {
@@ -25,7 +25,7 @@ appRoutes.route('/').get((req, res) => {
       .catch(err => res.status(400).send("unable to load database"))
   });
 
-// Defined edit route
+// Edit employee
 appRoutes.route('/edit/:id').get((req, res) => {
   const id = req.params.id;
   Employee.findById(id, (err, employee) => {
@@ -33,7 +33,7 @@ appRoutes.route('/edit/:id').get((req, res) => {
   });
 });
 
-//  Defined update route
+//  Update employee
 appRoutes.route('/update/:id').put((req, res) => {
   Employee.findById(req.params.id, (err, employee) => {
     if (!employee)
@@ -52,7 +52,7 @@ appRoutes.route('/update/:id').put((req, res) => {
   });
 });
 
-// Defined delete | remove | destroy route
+// Delete employee
 appRoutes.route('/delete/:id').delete((req, res) => {
   Employee.findByIdAndRemove({_id: req.params.id}, (err, employee) => {
         if(err) res.json(err);

@@ -4,6 +4,7 @@ import VueAxios from 'vue-axios';
 import axios from 'axios';
 import NProgress from 'nprogress';
 import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css'
 
 import App from './App.vue';
 import Create from './components/Create.vue';
@@ -13,9 +14,11 @@ import Index from './components/Index.vue';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/nprogress/nprogress.css';
+//import vuetify from './plugins/vuetify';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.use(Vuetify)
 
 // const { required, maxLength, email } = require('vuelidate/lib/validators')
 // const { validationMixin, default: Vuelidate } = require('vuelidate')
@@ -59,26 +62,13 @@ new Vue({
   render: h => h(App),
   router,
   vuetify: new Vuetify(),
+
   // mixins: [validationMixin],
 
   // validations: {
   //   name: { required, maxLength: maxLength(10) },
   //   email: { required, email },
   //   },
-
-  data: () => ({
-    valid: false,
-    firstname: '',
-    nameRules: [
-      v => !!v || 'Name is required',
-      v => v.length <= 10 || 'Name must be less than 10 characters',
-    ],
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid',
-    ],
-  }),
 
   // computed: {
   //   nameErrors () {
@@ -96,9 +86,21 @@ new Vue({
   //     return errors
   //   },
   //},
-
-  // methods: {
-  //   submit () {
-  //     this.$v.$touch()
-  //   }},
+  methods: {
+    submit () {
+      this.$v.$touch()
+    }},
+  data: () => ({
+    valid: false,
+    firstname: '',
+    nameRules: [
+      v => !!v || 'Name is required',
+      v => v.length <= 10 || 'Name must be less than 10 characters',
+    ],
+    email: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+/.test(v) || 'E-mail must be valid',
+    ],
+  })
 }).$mount('#app')
